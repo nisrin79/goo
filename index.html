@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Restaurant Web App</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+    }
+    .tile {
+      background-color: #f4f4f4;
+      padding: 20px;
+      margin: 20px;
+      border-radius: 5px;
+      text-align: center;
+      cursor: pointer;
+      width: 150px;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      transition: background-color 0.3s ease;
+    }
+    .tile:hover {
+      background-color: #ddd;
+    }
+    #menuDisplay {
+      margin-top: 20px;
+      padding: 20px;
+      background-color: white;
+      border-radius: 5px;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      display: none;
+    }
+    .logo {
+      cursor: pointer;
+      font-size: 20px;
+      font-weight: bold;
+      margin-top: 20px;
+      color: blue;
+    }
+  </style>
+</head>
+<body>
+  <div class="container" id="home">
+    <div class="tile" id="menuTile">
+      <h3>Menu</h3>
+    </div>
+    <div class="tile" id="specialsTile">
+      <h3>Specials</h3>
+    </div>
+    <div class="tile" id="mapTile">
+      <h3>Map</h3>
+    </div>
+  </div>
+
+  <div id="menuDisplay">
+    <h2>Specials</h2>
+    <p id="category"></p>
+    <div class="logo" onclick="goHome()">← Back to Home</div>
+  </div>
+
+  <script>
+    var categories = ['Lunch', 'Dinner', 'Sushi', 'Dessert', 'Drinks'];
+    
+    function loadMenuItems() {
+      var randomIndex = Math.floor(Math.random() * categories.length);
+      var randomCategory = categories[randomIndex];
+      document.getElementById('category').innerText = "Category: " + randomCategory;
+      document.getElementById('home').style.display = 'none';
+      document.getElementById('menuDisplay').style.display = 'block';
+    }
+    
+    function goHome() {
+      document.getElementById('home').style.display = 'flex';
+      document.getElementById('menuDisplay').style.display = 'none';
+    }
+
+    document.getElementById('specialsTile').onclick = loadMenuItems;
+  </script>
+</body>
+</html>
